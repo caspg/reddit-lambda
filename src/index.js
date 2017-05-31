@@ -13,10 +13,9 @@ async function getAccessToken() {
   const auth = { username: CLIENT_ID, password: API_SECRET };
   const data = { grant_type: 'password', username: REDDIT_USERNAME, password: REDDIT_PASSWORD };
   const encodedData = querystring.stringify(data);
-  const encodedData = data;
 
   try {
-    const response = await axios.post(url, encodedData, { auth })
+    const response = await axios.post(url, encodedData, { auth });
     const token = response.data.access_token;
 
     return token;
@@ -25,4 +24,14 @@ async function getAccessToken() {
   }
 }
 
-getAccessToken().then(token => console.log(token));
+async function getMe() {
+  const token = await getAccessToken();
+  const url = 'https://oauth.reddit.com/api/v1/me';
+  const headers = { Authorization: `bearer ${token}`};
+
+  const response = await axios.get(url, { headers });
+
+  console.log(response.data);
+}
+
+getMe();
