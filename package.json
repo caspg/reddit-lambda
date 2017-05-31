@@ -1,0 +1,8 @@
+{
+  "name": "post-for-hire",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "dependencies": {
+    "axios": "^0.16.1"
+  }
+}
