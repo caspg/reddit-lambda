@@ -1,5 +1,4 @@
-const querystring = require('querystring');
-const axios = require('axios');
+const snoowrap = require('snoowrap');
 
 require('dotenv').config();
 
@@ -8,30 +7,21 @@ const API_SECRET = process.env.API_SECRET;
 const REDDIT_USERNAME = process.env.REDDIT_USERNAME;
 const REDDIT_PASSWORD = process.env.REDDIT_PASSWORD;
 
-async function getAccessToken() {
-  const url = 'https://www.reddit.com/api/v1/access_token';
-  const auth = { username: CLIENT_ID, password: API_SECRET };
-  const data = { grant_type: 'password', username: REDDIT_USERNAME, password: REDDIT_PASSWORD };
-  const encodedData = querystring.stringify(data);
+const reddit = new snoowrap({
+  userAgent: `Cool bot by /u/${REDDIT_USERNAME}`,
+  clientId: CLIENT_ID,
+  clientSecret: API_SECRET,
+  username: REDDIT_USERNAME,
+  password: REDDIT_PASSWORD
+});
 
-  try {
-    const response = await axios.post(url, encodedData, { auth });
-    const token = response.data.access_token;
+const SUBREDDIT_NAME = 'sandboxtest';
 
-    return token;
-  } catch (error) {
-    console.log(error);
-  }
-}
+const postData = {
+  title: 'nsa secrets2',
+  text: 'secret3 **secret5**',
+};
 
-async function getMe() {
-  const token = await getAccessToken();
-  const url = 'https://oauth.reddit.com/api/v1/me';
-  const headers = { Authorization: `bearer ${token}`};
-
-  const response = await axios.get(url, { headers });
-
-  console.log(response.data);
-}
-
-getMe();
+reddit.getSubreddit(SUBREDDIT_NAME)
+  .submitSelfpost(postData)
+  .then(console.log);
