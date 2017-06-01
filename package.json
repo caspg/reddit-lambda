@@ -2,8 +2,14 @@
   "name": "post-for-hire",
   "version": "1.0.0",
   "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "dotenv": "^4.0.0",
     "snoowrap": "^1.14.0"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4"
   }
 }
