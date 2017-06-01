@@ -1,3 +1,1 @@
-exports.handler = (event, context) => {
-  context.succeed('Hello, world!');
-};
+exports.handler = require('./src/lambdaHandler');
