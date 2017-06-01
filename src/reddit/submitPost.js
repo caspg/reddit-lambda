@@ -17,16 +17,20 @@ const reddit = new snoowrap({
 
 const SUBREDDIT_NAME = 'sandboxtest';
 
+const text = `
+  secret3 **secret5**
+
+  ${new Date()}
+`;
+
 const postData = {
   title: 'nsa secrets1',
-  text: 'secret3 **secret5**',
+  text,
 };
 
 function submitPost() {
   return reddit.getSubreddit(SUBREDDIT_NAME)
-    .submitSelfpost(postData)
-    .then(console.log)
-    .catch(console.log);
+    .submitSelfpost(postData);
 }
 
 module.exports = submitPost;
