@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "babel ./src/index.js"
   },
   "dependencies": {
     "dotenv": "^4.0.0",
     "snoowrap": "^1.14.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
     "jest": "^20.0.4"
   }
 }
