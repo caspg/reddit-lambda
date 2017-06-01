@@ -1,5 +1,7 @@
-function lambdaHandler(event, context) {
-  context.succeed('Hello, world from TravisCi deployment!!');
+const submitPost = require('./reddit/submitPost');
+
+function lambdaHandler(/* event, context, callback */) {
+  submitPost();
 }
 
 module.exports = lambdaHandler;

@@ -23,7 +23,7 @@ const postData = {
 };
 
 function submitPost() {
-  reddit.getSubreddit(SUBREDDIT_NAME)
+  return reddit.getSubreddit(SUBREDDIT_NAME)
     .submitSelfpost(postData)
     .then(console.log)
     .catch(console.log);
