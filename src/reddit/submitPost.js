@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const snoowrap = require('snoowrap');
 
 require('dotenv').config();
@@ -15,21 +17,21 @@ const reddit = new snoowrap({
   password: REDDIT_PASSWORD
 });
 
-const SUBREDDIT_NAME = 'sandboxtest';
+function readPostBody() {
+  const filePath = path.resolve(__dirname, './postBody.md');
+  const data = fs.readFileSync(filePath, 'utf8');
 
-const text = `
-  secret3 **secret5**
-
-  ${new Date()}
-`;
-
-const postData = {
-  title: 'nsa secrets1',
-  text,
-};
+  return data;
+}
 
 function submitPost() {
-  return reddit.getSubreddit(SUBREDDIT_NAME)
+  const subreddit_name = 'testingground4bots';
+  const title = 'Lorem title';
+  const text = readPostBody();
+
+  const postData = { title, text };
+
+  return reddit.getSubreddit(subreddit_name)
     .submitSelfpost(postData);
 }
 
