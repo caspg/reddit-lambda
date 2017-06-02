@@ -4,7 +4,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "jest",
-    "build": "babel ./src/index.js"
+    "clean": "rm -rf dist/*",
+    "build": "yarn run clean && babel src --out-dir dist"
   },
   "dependencies": {
     "dotenv": "^4.0.0",
