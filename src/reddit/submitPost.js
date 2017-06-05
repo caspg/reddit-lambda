@@ -38,7 +38,7 @@ function parseSubredditName(event) {
 
 function submitPost(event) {
   const subredditName = parseSubredditName(event);
-  const title = 'Lorem title';
+  const title = 'New title!';
   const text = readPostBody();
 
   const postData = { title, text };
