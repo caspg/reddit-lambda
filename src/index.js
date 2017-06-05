@@ -1,7 +1,7 @@
 const submitPost = require('./reddit/submitPost');
 
 exports.handler = (event, context, callback) => {
-  submitPost()
+  submitPost(event)
     .then((result) => {
       console.log('SUCCESS:', result);
       callback(null, 'Post submitted successfully!');

@@ -24,14 +24,26 @@ function readPostBody() {
   return data;
 }
 
-function submitPost() {
-  const subreddit_name = 'testingground4bots';
+
+function parseSubredditName(event) {
+  const defaultSubreddit = 'test';
+
+  if (!!event.resources || !!event.resources[0]) return defaultSubreddit;
+
+  const resource = event.resources[0];
+
+  const splitted = resource.split('/');
+  return splitted[splitted.length - 1];
+}
+
+function submitPost(event) {
+  const subredditName = parseSubredditName(event);
   const title = 'Lorem title';
   const text = readPostBody();
 
   const postData = { title, text };
 
-  return reddit.getSubreddit(subreddit_name)
+  return reddit.getSubreddit(subredditName)
     .submitSelfpost(postData);
 }
 
