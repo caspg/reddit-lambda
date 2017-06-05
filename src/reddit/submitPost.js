@@ -28,7 +28,7 @@ function readPostBody() {
 function parseSubredditName(event) {
   const defaultSubreddit = 'test';
 
-  if (!!event.resources || !!event.resources[0]) return defaultSubreddit;
+  if (!event.resources || !event.resources[0]) return defaultSubreddit;
 
   const resource = event.resources[0];
 
